@@ -11,7 +11,7 @@ pipeline {
       }
     } 
     
-    stage('Cloning Git') {
+    stage('Cloning Git Repo') {
       steps {
         git 'https://github.com/AharonIsraelCohen/netoTest.git'
       }
