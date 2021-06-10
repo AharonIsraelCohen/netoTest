@@ -1,4 +1,10 @@
 pipeline {
+  
+  environment {
+    registry = "ac770/netomedia"
+    registryCredential = ‘dockerhub’
+  }
+  
   agent any
     
   tools {nodejs "nodeJS"}
@@ -21,6 +27,15 @@ pipeline {
       steps {
          sh 'npm run build'
       }
-    }    
+    }
+    
+    stage('Building image') {
+    steps{
+      script {
+        docker.build registry + ":$BUILD_NUMBER"
+      }
+    }
+  }
   }
 }
+
