@@ -5,15 +5,35 @@ pipeline {
     
   stages {
     
+    stage('Clean') {
+      steps {
+         sh 'rm -rf *'
+      }
+    } 
+    
     stage('Cloning Git') {
       steps {
-        sh 'rm -rf *'
-        git 'https://github.com/AharonIsraelCohen/netomedia.git'
-        sh 'cd app && ls -l'
-        sh 'npm install'
-        sh 'npm run test'
-        sh 'npm run build'
+        git 'https://github.com/AharonIsraelCohen/netoTest.git'
       }
-    }    
+    }
+        
+    
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm run test'
+      }
+    }
+
+    stage('Build') {
+      steps {
+         sh 'npm run build'
+      }
+    }      
   }
 }
