@@ -7,33 +7,8 @@ pipeline {
     
     stage('Clean') {
       steps {
-         sh 'rm -rf *'
+         sh 'ls -l'
       }
     } 
-    
-    stage('Cloning Git Repo') {
-      steps {
-        git 'https://github.com/AharonIsraelCohen/netoTest.git'
-      }
-    }
-        
-    
-    stage('Install dependencies') {
-      steps {
-        sh 'npm install'
-      }
-    }
-     
-    stage('Test') {
-      steps {
-         sh 'npm run test'
-      }
-    }
-
-    stage('Build') {
-      steps {
-         sh 'npm run build'
-      }
-    }      
   }
 }
