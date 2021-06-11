@@ -5,7 +5,7 @@ pipeline {
   }
   
   agent any
-    
+  
   tools {nodejs "nodeJS"}
     
   stages {
@@ -36,8 +36,9 @@ pipeline {
     
     stage('Test2') {
       steps {
-        withCredentials([string(credentialsId: 'username', variable: 'username')]){
-        sh 'echo $username' 
+        withCredentials([string(credentialsId: 'username', variable: 'username')], [string(credentialsId: 'token', variable: 'token')]){
+        sh 'echo $username'
+        sh 'echo $token'
         }
       }
     }
