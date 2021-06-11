@@ -1,3 +1,3 @@
-seconds = 5;
+seconds = 60;
 
 exports.seconds = seconds;
