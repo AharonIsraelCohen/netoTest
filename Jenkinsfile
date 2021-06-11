@@ -31,7 +31,7 @@ pipeline {
     
     stage('Building image') {
       steps{
-        sh 'sudo docker build -t $user:$registry:$BUILD_NUMBER .'
+        sh 'sudo docker build -t $user/$registry:$BUILD_NUMBER .'
       }
     }
     
@@ -46,7 +46,7 @@ pipeline {
     
     stage('Push image') {
       steps{
-        sh 'sudo docker push $user:$registry:$BUILD_NUMBER'
+        sh 'sudo docker push $user/$registry:$BUILD_NUMBER'
       }
     }
   
