@@ -2,7 +2,6 @@ pipeline {
   
   environment {
     registry = "ac770/netomedia"
-    registryCredential = "${dockerhub}"
   }
   
   agent any
@@ -37,7 +36,7 @@ pipeline {
     
     stage('Login to DockerHub') {
       steps{
-        sh 'echo $token | sudo docker login --username $"username" --password-stdin'
+        sh 'sudo docker login -u $username -p $token'
       }
     }
     
