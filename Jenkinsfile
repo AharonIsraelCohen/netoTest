@@ -2,7 +2,7 @@ pipeline {
   
   environment {
     registry = "ac770/netomedia"
-    registryCredential = `dockerhub`
+    registryCredential = ${dockerhub}
   }
   
   agent any
