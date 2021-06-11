@@ -5,7 +5,11 @@ pipeline {
   stages {
     stage('kubectl patch') {
       steps {
+<<<<<<< HEAD
         sh './deploy.sh' 
+=======
+        sh "kubectl patch deployment netomedia-deployment -p'{"spec":{"template":{"spec":{"containers":[{"name": "nodejs", "image":"ac770/netomedia:params.tag"}]}}}}'"
+>>>>>>> 69d4aa0cdc6f2c86f8a52903f771230825678eb1
       }
     }
   }
