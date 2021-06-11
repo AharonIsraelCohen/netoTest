@@ -34,6 +34,14 @@ pipeline {
       }
     }
     
+    stage('Test') {
+      steps {
+         sh 'echo $username' 
+         sh ' echo $token'
+      }
+    }
+    
+    
     stage('Login to DockerHub') {
       steps{
         sh 'sudo docker login -u $username -p $token'
