@@ -31,25 +31,25 @@ pipeline {
     
     stage('Building image') {
       steps{
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
-        }
+        sh 'sudo docker build -t test'
       }
     }
     
-    stage('Deploy Image') {
+    stage('Login to DockerHub') {
       steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push()
-        }
+        sh 'echo $token | sudo docker login --username $"username" --password-stdin'
       }
     }
-  }
+    
+    stage('Login to DockerHub') {
+      steps{
+        sh 'sudo docker push'
+      }
+    }
   
      stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi test"
       }
     }
     
