@@ -36,8 +36,8 @@ pipeline {
     
     stage('Test2') {
       steps {
-        sh 'echo $"{username}"' 
-        sh ' echo $"{token}"'
+        sh 'echo ${username}' 
+        sh ' echo ${token}'
       }
     }
     
