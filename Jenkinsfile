@@ -1,7 +1,7 @@
 pipeline {
   
   environment {
-    user = "ac770"
+    username = 'ac770'
     registry = "netomedia"
   }
   
@@ -14,6 +14,7 @@ pipeline {
     stage('Install dependencies') {
       steps {
         sh 'npm install'
+        sh 'echo $username'
       }
     }
      
@@ -52,7 +53,7 @@ pipeline {
   
      stage('Remove Unused docker image') {
       steps{
-        sh "sudo docker rmi ac770:$registry:$BUILD_NUMBER"
+        sh "sudo docker rmi ac770/$registry:$BUILD_NUMBER"
       }
     }
     
