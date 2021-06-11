@@ -1,0 +1,13 @@
+pipeline {
+  
+  agent any
+    
+  stages {
+    stage('kubectl patch') {
+      steps {
+        sh 'kubectl patch deployment netomedia-deployment -p'{"spec":{"template":{"spec":{"containers":[{"name": "nodejs", "image":"ac770/netomedia:params.tag"}]}}}}''
+      }
+    }
+  }
+}
+
