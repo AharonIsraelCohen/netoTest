@@ -32,7 +32,7 @@ pipeline {
     
     stage('Building image') {
       steps{
-        sh 'sudo docker build -t ac770/$registry:$BUILD_NUMBER .'
+        sh 'sudo docker build -t $username/$registry:$BUILD_NUMBER .'
       }
     }
     
@@ -40,20 +40,20 @@ pipeline {
     stage('Login to DockerHub') {
       steps{
         withCredentials([string(credentialsId: 'token', variable: 'token')]){
-        sh 'sudo docker login -u ac770 -p $token'
+        sh 'sudo docker login -u $username -p $token'
         }
       }
     }
     
     stage('Push image') {
       steps{
-        sh 'sudo docker push ac770/$registry:$BUILD_NUMBER'
+        sh 'sudo docker push $username/$registry:$BUILD_NUMBER'
       }
     }
   
      stage('Remove Unused docker image') {
       steps{
-        sh "sudo docker rmi ac770/$registry:$BUILD_NUMBER"
+        sh "sudo docker rmi $username/$registry:$BUILD_NUMBER"
       }
     }
     
