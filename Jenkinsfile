@@ -41,7 +41,7 @@ pipeline {
       }
     }
     
-    stage('Login to DockerHub') {
+    stage('Push image') {
       steps{
         sh 'sudo docker push'
       }
