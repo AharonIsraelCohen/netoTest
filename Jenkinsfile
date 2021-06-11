@@ -34,19 +34,12 @@ pipeline {
       }
     }
     
-    stage('Test2') {
-      steps {
-        withCredentials([string(credentialsId: 'username', variable: 'username')], [string(credentialsId: 'token', variable: 'token')]){
-        sh 'echo $username'
-        sh 'echo $token'
-        }
-      }
-    }
-    
     
     stage('Login to DockerHub') {
       steps{
-        sh 'sudo docker login -u $username -p $token'
+        withCredentials([string(credentialsId: 'token', variable: 'token')]){
+        sh 'sudo docker login -u ac770 -p $token'
+        }
       }
     }
     
