@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netomedia-deployment
+  labels:
+    app: netomedia-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netomedia-test
+  template:
+    metadata:
+      labels:
+        app: netomedia-test
+    spec:
+      containers:
+      - name: nodejs
+        image: ac770/netomedia:35
+        ports:
+        - containerPort: 9090
