@@ -36,8 +36,9 @@ pipeline {
     
     stage('Test2') {
       steps {
-        sh 'echo ${username}' 
-        sh ' echo ${token}'
+        withCredentials([string(credentialsId: 'username', variable: 'username')]){
+        sh 'echo $username' 
+        }
       }
     }
     
