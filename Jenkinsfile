@@ -52,7 +52,7 @@ pipeline {
   
      stage('Remove Unused docker image') {
       steps{
-        sh "sudo docker rmi $user:$registry:$BUILD_NUMBER"
+        sh "sudo docker rmi ac770:$registry:$BUILD_NUMBER"
       }
     }
     
