@@ -1,7 +1,8 @@
 pipeline {
   
   environment {
-    registry = "ac770/netomedia"
+    user = "ac770"
+    registry = "netomedia"
   }
   
   agent any
@@ -30,7 +31,7 @@ pipeline {
     
     stage('Building image') {
       steps{
-        sh 'sudo docker build -t test .'
+        sh 'sudo docker build -t $user:$registry:$BUILD_NUMBER .'
       }
     }
     
@@ -38,20 +39,20 @@ pipeline {
     stage('Login to DockerHub') {
       steps{
         withCredentials([string(credentialsId: 'token', variable: 'token')]){
-        sh 'sudo docker login -u ac770 -p $token'
+        sh 'sudo docker login -u $user -p $token'
         }
       }
     }
     
     stage('Push image') {
       steps{
-        sh 'sudo docker push'
+        sh 'sudo docker push $user:$registry:$BUILD_NUMBER'
       }
     }
   
      stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi test"
+        sh "sudo docker rmi $user:$registry:$BUILD_NUMBER"
       }
     }
     
