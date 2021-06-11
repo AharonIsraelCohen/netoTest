@@ -15,7 +15,19 @@ app.get('/intense', function(req, res) {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   res.end('some arbitrary CPU-intensive task\n');
-  sleep(seconds);
+
+
+ var keepCalling = true;
+ var loopSeconds = seconds * 1000
+ setTimeout(function () {
+    keepCalling = false;
+ }, loopSeconds);
+
+ while (keepCalling) {
+    console.log("test");
+ }
+
+
 });
 
 

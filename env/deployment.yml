@@ -19,3 +19,8 @@ spec:
         image: ac770/netomedia:35
         ports:
         - containerPort: 9090
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
